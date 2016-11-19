@@ -1,47 +1,4 @@
-[quote='Anna-senpai' pid='52615667' dateline='1475265052']
-[size=x-large]Preface[/size]
-Greetz everybody,
-
-When I first go in DDoS industry, I wasn't planning on staying in it long. I made my money, there's lots of eyes looking at IOT now, so it's time to GTFO. However, I know every skid and their mama, it's their wet dream to have something besides qbot.
-
-So today, I have an amazing release for you. With Mirai, I usually pull max 380k bots from telnet alone. However, after the Kreb DDoS, ISPs been slowly shutting down and cleaning up their act. Today, max pull is about 300k bots, and dropping.
-
-So, I am your senpai, and I will treat you real nice, my hf-chan.
-
-And to everyone that thought they were doing anything by hitting my CNC, I had good laughs, this bot uses domain for CNC. It takes 60 seconds for all bots to reconnect, lol
-
-Also, shoutout to this blog post by malwaremustdie
-http://blog.malwaremustdie.org/2016/08/mmd-0056-2016-linuxmirai-just.html
-https://web.archive.org/web/20160930230210/http://blog.malwaremustdie.org/2016/08/mmd-0056-2016-linuxmirai-just.html <- backup in case low quality reverse engineer unixfreaxjp decides to edit his posts lol
-Had a lot of respect for you, thought you were good reverser, but you really just completely and totally failed in reversing this binary. "We still have better kung fu than you kiddos" don't make me laugh please, you made so many mistakes and even confused some different binaries with my. LOL
-
-Let me give you some slaps back -
-1) port 48101 is not for back connect, it is for control to prevent multiple instances of bot running together
-2) /dev/watchdog and /dev/misc are not for "making the delay", it for preventing system from hanging. This one is low-hanging fruit, so sad that you are extremely dumb
-3) You failed and thought FAKE_CNC_ADDR and FAKE_CNC_PORT was real CNC, lol "And doing the backdoor to connect via HTTP on 65.222.202.53". you got tripped up by signal flow ;) try harder skiddo
-4) Your skeleton tool sucks ass, it thought the attack decoder was "sinden style", but it does not even use a text-based protocol? CNC and bot communicate over binary protocol
-5) you say 'chroot("/") so predictable like torlus' but you don't understand, some others kill based on cwd. It shows how out-of-the-loop you are with real malware. Go back to skidland
-
-5 slaps for you
-
-Why are you writing reverse engineer tools? You cannot even correctly reverse in the first place. Please learn some skills first before trying to impress others. Your arrogance in declaring how you "beat me" with your dumb kung-fu statement made me laugh so hard while eating my SO had to pat me on the back.
-
-Just as I forever be free, you will be doomed to mediocracy forever.
-
-
-[size=x-large]Requirements[/size]
-[b]Bare Minimum[/b]
-2 servers: 1 for CNC + mysql, 1 for scan receiver, and 1+ for loading
-
-[b]Pro Setup (my setup)[/b]
-2 VPS and 4 servers
-- 1 VPS with extremely bulletproof host for database server
-- 1 VPS, rootkitted, for scanReceiver and distributor
-- 1 server for CNC (used like 2% CPU with 400k bots)
-- 3x 10gbps NForce servers for loading (distributor distributes to 3 servers equally)
-
-
-[size=x-large]Infrastructure Overview[/size]
+#Infrastructure Overview
 - To establish connection to CNC, bots resolve a domain (resolv.c/resolv.h) and connect to that IP address
 - Bots brute telnet using an advanced SYN scanner that is around 80x faster than the one in qbot, and uses almost 20x less resources. When finding bruted result, bot resolves another domain and reports it. This is chained to a separate server to automatically load onto devices as results come in.
 - Bruted results are sent by default on port 48101. The utility called scanListen.go in tools is used to receive bruted results (I was getting around 500 bruted results per second at peak). If you build in debug mode, you should see the utitlity scanListen binary appear in debug folder.
@@ -50,7 +7,7 @@ Mirai uses a spreading mechanism similar to self-rep, but what I call "real-time
 
 The loader can be configured to use multiple IP address to bypass port exhaustion in linux (there are limited number of ports available, which means that there is not enough variation in tuple to get more than 65k simultaneous outbound connections - in theory, this value lot less). I would have maybe 60k - 70k simultaneous outbound connections (simultaneous loading) spread out across 5 IPs.
 
-[size=x-large]Configuring Bot[/size]
+##Configuring Bot
 Bot has several configuration options that are obfuscated in (table.c/table.h). In ./mirai/bot/table.h you can find most descriptions for configuration options. However, in ./mirai/bot/table.c there are a few options you *need* to change to get working.
 
 - TABLE_CNC_DOMAIN - Domain name of CNC to connect to - DDoS avoidance very fun with mirai, people try to hit my CNC but I update it faster than they can find new IPs, lol. Retards :)
