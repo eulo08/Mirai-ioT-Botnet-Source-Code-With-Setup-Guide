@@ -1,7 +1,7 @@
 # Mirai ioT (Internet of Things) Botnet
 Source Code for the Mirai ioT botnet to be used for Research & IoC Development Purposes
 
-See "post.txt" for the post in which it leaks, if you want to know how it is all set up and the likes.
+Please read the help doc if you want to know how it all functions and how to set it up
 
 #### Debian based distributions requirements
 
