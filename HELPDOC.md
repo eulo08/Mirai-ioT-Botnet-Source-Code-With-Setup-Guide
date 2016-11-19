@@ -80,7 +80,8 @@ http://pastebin.com/1rRCc3aD
 #Building CNC+Bot
 The CNC, bot, and related tools:
 1) http://santasbigcandycane.cx/mirai.src.zip - ### THESE LINKS WILL NOT LAST FOREVER, 2 WEEKS MAX - BACK IT UP!
-http://i.imgur.com/BVc7qJs.png
+![Alt text](http://i.imgur.com/BVc7qJs.png "Optional title")
+
 
 2) http://santasbigcandycane.cx/loader.src.zip - ### THESE LINKS WILL NOT LAST FOREVER, 2 WEEKS MAX - BACK IT UP![/b]
 
