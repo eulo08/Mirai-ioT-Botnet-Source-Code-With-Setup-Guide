@@ -11,10 +11,10 @@ https://github.com/OliAPT/Mirai-ioT-Botnet-Source-Code-With-Setup-Guide/blob/mas
 ### what you need before setting up: 
 
 * gcc
- golang
- electric-fence
- mysql-server
- mysql-client
+* golang
+* electric-fence
+* mysql-server
+* mysql-client
 
 
 All primary components of the botnet can be found in this repository, including the DLR, Mirai and the loader.
