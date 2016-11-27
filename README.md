@@ -31,4 +31,11 @@ Mirai (Japanese for "the future") is malware that turns computer systems running
 | Sept 13, 2016 | KrebsOnSecurity     |    620Gbps |
 | Aug 17, 2016 |Incapsula  | 280Gbps  |
 
+# Who is the Author of Mirai?
+
+The presumed developer goes under the pseudonym of 'Anna Senpai'
+
+
+
+- ALL CREDITS TO ANNA SENPAI -
 
