@@ -10,3 +10,7 @@ https://github.com/OliAPT/Mirai-ioT-Botnet-Source-Code-With-Setup-Guide/blob/mas
 
 All primary components of the botnet can be found in this repository, including the DLR, Mirai and the loader.
 
+## What is Mirai?
+Mirai (Japanese for "the future") is malware that turns computer systems running Linux into remotely controlled "bots", that can be used as part of a botnet in large-scale network attacks. It primarily targets online consumer devices such as remote cameras and home routers.
+
+Credits to Anna-senpai 
