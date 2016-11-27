@@ -26,7 +26,7 @@ Mirai (Japanese for "the future") is malware that turns computer systems running
 
 | Date:     | Target:         | Size of attack:  |
 | ------------- |:-------------:| -----:|
-| Oct 21, 2016     | Dyn DNS (impacted twitter, amazon, tumblr, reddit, spotify and netflix.| 1.2Tbps? |
+| Oct 21, 2016     | Dyn DNS (Impacted Twitter, Amazon, Tumblr, Reddit, Spotify and Netflix)| 1.2Tbps? |
 | Sept 22, 2016     | OVH      |  1Tbps  |
 | Sept 13, 2016 | KrebsOnSecurity     |    620Gbps |
 | Aug 17, 2016 |Incapsula  | 280Gbps  |
