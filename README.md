@@ -37,5 +37,4 @@ The presumed developer goes under the pseudonym of 'Anna Senpai'
 
 
 
-- ALL CREDITS TO ANNA SENPAI -
 
