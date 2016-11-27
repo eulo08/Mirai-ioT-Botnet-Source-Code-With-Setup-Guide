@@ -8,7 +8,7 @@ https://github.com/OliAPT/Mirai-ioT-Botnet-Source-Code-With-Setup-Guide/blob/mas
 
 `$ apt-get install gcc golang electric-fence mysql-server mysql-client`
 
-### what you need before setting up: 
+### what you need installed
 
 * gcc
 * golang
